@@ -1,6 +1,8 @@
 const express = require('express');
 const server = express();
 const port = 8080;
+const knex = require('knex')(require('./knexfile.js')[process.env.PORT || 'development']);
+
 
 server.use(express.json());
 server.use((req, res, next) => {
@@ -13,16 +15,12 @@ server.use((req, res, next) => {
   next();
 });
 
-const movies = [
-  {title: 'Mean Girls'},
-  {title: 'Hackers'},
-  {title: 'The Grey'},
-  {title: 'Sunshine'},
-  {title: 'Ex Machina'},
-];
+const movies = [];
 
 server.get('/movies', (req, res) => {
-  res.status(200).send(movies);
+  knex('movies')
+  .then(data => res.status(200).send(data))
+  .catch((err) => res.status(500).send([{message: `Error: ${err}`}]))
 })
 
 
