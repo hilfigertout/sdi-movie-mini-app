@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.delete-movie {
+  background-color: orangered
+}
+
+.watched-button {
+  background-color: green
+}
+
+.to-watch-button {
+  background-color: orange
+}
+
+.moviedb-logo {
+  width: 10%
+}
+

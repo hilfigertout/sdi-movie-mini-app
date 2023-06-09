@@ -23,6 +23,30 @@ server.get('/movies', (req, res) => {
   .catch((err) => res.status(500).send([{message: `Error: ${err}`}]))
 })
 
+server.post('/movies', (req, res) => {
+  const newMovie = req.body
+  knex('movies')
+    .insert(newMovie, ['*'])
+    .then(person => {
+      res.status(201).send(person);
+    })
+    .catch(err => {
+      res.status(500).send({message: `Server error: ${err}`});
+    })
+})
+
+server.delete('/movies/:id', (req, res) => {
+  knex('movies')
+    .where('id', req.params.id)
+    .del(['*'])
+    .then(person => {
+      res.status(200).send(`Deleted movie with id ${req.params.id}`);
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+})
+
 
 
 server.listen(port, () => console.log(`Server listening on port ${port}`));
