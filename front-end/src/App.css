@@ -50,6 +50,33 @@
 }
 
 .moviedb-logo {
-  width: 10%
+  width: 40%
 }
 
+.movie-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-page * {
+  margin: 10px;
+  padding: 10px;
+}
+
+.movie-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.movie-item {
+  border: 2px solid black;
+  background-color: lightblue;
+  margin: 10px;
+  padding: 10px;
+  width: 20%;
+}

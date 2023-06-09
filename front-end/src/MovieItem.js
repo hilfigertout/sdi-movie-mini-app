@@ -27,7 +27,7 @@ const MovieItem = ({movie}) => {
 
 
   return (
-  <div>
+  <div className="movie-item">
     <h2 onClick={() => setShowMovieId(movie.id)}>{movie.title}</h2>
     {watched ? <h4>Watched</h4> : <h4>To Watch</h4>}
     {<button className="delete-movie" disabled={buttonLoading} onClick={deleteMovie}>Delete</button>}

@@ -26,7 +26,8 @@ function App() {
     .catch(err => console.error(err));
   }, [getTrigger])
 
-  const createNewMovie = () => {
+  const createNewMovie = (e) => {
+    e.preventDefault()
     setLoadingCreate(true);
     if (inputTitle) {
       const newMovie = {title: inputTitle};
@@ -40,6 +41,7 @@ function App() {
           console.log('Failed to add movie');
         }
       })
+      .catch(err => console.log(err))
       .finally(() => {
         setLoadingCreate(false);
       })
@@ -63,7 +65,7 @@ function App() {
             <input type="text" placeholder="search" value={searchString} onChange={e => setSearchString(e.target.value)} />
             <form className="new-movie">
               <input type="text" placeholder="New Movie" label="new" value={inputTitle} onChange={e => setInputTitle(e.target.value) }/>
-              <button disabed={loadingCreate} onClick={createNewMovie}>Add Movie</button>
+              <button disabled={loadingCreate} onClick={createNewMovie}>Add Movie</button>
             </form>
             <div className="movie-list">
               {

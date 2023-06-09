@@ -23,6 +23,19 @@ server.get('/movies', (req, res) => {
   .catch((err) => res.status(500).send([{message: `Error: ${err}`}]))
 })
 
+server.get('/movies/api/:title', (req, res) => {
+
+  const title = req.params.title
+  console.log(title);
+  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&query=${title}&include_adult=false&language=en-US&page=1`)
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+    res.status(200).send(data);
+  })
+  .catch(err => console.error(err));
+})
+
 server.post('/movies', (req, res) => {
   const newMovie = req.body
   knex('movies')
